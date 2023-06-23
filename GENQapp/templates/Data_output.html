@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+<!--Navbar-->
+
+<!--Page content-->
+{% block content %}
+    <div class="container mt5">
+        <button class="button btn btn-outline-success btn-info me-2" type="button" ><a href="{% url 'form_data' %}">Register</a></button>
+        <h1 class="text-center bg-dark text-white">List Of GENQ Customers</h1>
+        
+        <table class="table table-bordered text-light" style="text-align: center;">
+            <thead class="table-warning">
+                <tr>
+                    <th style="width: 10%;">First Name</th>
+                    <th style="width: 10%;">Last Name</th>
+                    <th style="width: 10%;">Date</th>
+                    <th style="width: 10%;">Gender</th>
+                    <th style="width: 10%;">Country</th>
+                    <th style="width: 10%;">state</th>
+                    <th style="width: 10%;">Town</th>
+                    <th style="width: 10%;">Zip Code</th>
+                    <th style="width: 10%;">Phone 1</th>
+                    <th style="width: 10%;">Phone 2</th>
+                    <th style="width: 10%;">Email</th>
+                    <th colspan="2" style="width: 8%;">Action/Del</th>
+                </tr>
+            </thead>
+            <tbody style="color: black;">
+                
+                {% for customers in customer %}
+                    <tr>
+                        <td>{{ customers.f_name }}</td>
+                        <td>{{ customers.l_name }}</td>
+                        <td>{{ customers.date }}</td>
+                        <td>{{ customers.gender }}</td>
+                        <td>{{ customers.country }}</td>
+                        <td>{{ customers.state }}</td>
+                        <td>{{ customers.town }}</td>
+                        <td>{{ customers.zip }}</td>
+                        <td>{{ customers.phone1 }}</td>
+                        <td>{{ customers.phone2 }}</td>
+                        <td>{{ customers.email }}</td>
+                        <td class="bg-info">
+                            <a href="/data_delete/{{ customers.id }}" class="btn btn-sm">
+                                <i class="fa fa-trash f-size" style="font-size:30px;padding: 2px 10px; color:red"></i>
+                            </a>  
+                        </td>
+                          
+                        {% empty %}
+                        <td>
+                            <td colspan="6" style="color: #ff7f7f7f">No Record</td>
+                        </td>
+                    </tr>    
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
+    
